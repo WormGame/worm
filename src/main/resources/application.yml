@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    include:
+      - application-stomp.yml
+      - application-db.yml
