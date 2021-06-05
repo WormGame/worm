@@ -3,3 +3,20 @@ spring:
     include:
       - application-stomp.yml
       - application-db.yml
+  datasource:
+    url: jdbc:mysql://localhost:3308/worm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: none
+      properties:
+        hibernate:
+          format_sql: true
+          default_batch_fetch_size: 100
+          use_sql_comments: true
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
