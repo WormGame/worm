@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-    <property name="LOG_STORE_DIR" value="/logs" />
-    <property name="LOG_ROLLING_DIR" value="/logs/rolling" />
+    <property name="LOG_STORE_DIR" value="logs" />
+    <property name="LOG_ROLLING_DIR" value="logs/rolling" />
     <property name="LOG_NAME" value="server" />
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">

@@ -2,11 +2,10 @@ spring:
   profiles:
     include:
       - application-stomp.yml
-      - application-db.yml
   datasource:
-    url: jdbc:mysql://localhost:3308/worm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: 1234
+    url: ENC(DJ5nCdC4anos5LC0QwbzHs6fTWZgITh9FizxMvb4nvKRCD0RaRCBRh84lumw0GgGIYuZ1p0o0gYsrzMdWMXmwYWoEB92I9/OjOZN5XKUYtYpVhXTZ0uJCxYxYq9bfM11)
+    username: ENC(0Ev7369tmM7eVMWpDe9waw==)
+    password: ENC(xrVfu7ieAx/1bR3pXqshew==)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     jpa:
