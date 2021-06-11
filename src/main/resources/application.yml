@@ -8,6 +8,11 @@ spring:
     password: ENC(xrVfu7ieAx/1bR3pXqshew==)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cash: false
+
     jpa:
       hibernate:
         ddl-auto: none

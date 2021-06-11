@@ -21,12 +21,16 @@
             <Pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger{36}] - %msg%n</Pattern>
         </encoder>
     </appender>
-
-    <logger name="org.springframework" level="info"/>
-    <logger name=".cors" level="debug"/>
+<!--
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+-->
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
+        <!--<appender-ref ref="stash"/>-->
     </root>
 </configuration>
