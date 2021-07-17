@@ -7,14 +7,17 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.awt.*;
+
 @Configuration
 public class JasyptConfig {
+
     @Bean
-    public StringEncryptor jasyptStringEncryptor() {
+    public StringEncryptor jasyptStringEncryptor() throws Exception {
         String key = System.getProperty("jasypt.encryptor.password");
         String algorithm = System.getProperty("jasypt.encryptor.algorithm");
         if (key == null | algorithm == null) {
-            throw new RuntimeException();
+            throw new Exception("key, algorithm VM Option에 없다");
         }
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
