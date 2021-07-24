@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    include:
+      - application-stomp.yml
+  datasource:
+    url: jdbc:mysql://59.16.83.128:3306/worm?serverTimezone=UTC&characterEncoding=UTF-8
+    username: ENC(08M6zpH2m9pDejiyZ/NCuQ==)
+    password: ENC(jRIYwOTDiY1ngJwH79MYKQ==)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cash: false
+
+    jpa:
+      hibernate:
+        ddl-auto: none
+      properties:
+        hibernate:
+          format_sql: true
+          default_batch_fetch_size: 100
+          use_sql_comments: true
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
