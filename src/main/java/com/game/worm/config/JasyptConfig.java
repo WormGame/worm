@@ -16,6 +16,7 @@ public class JasyptConfig {
     public StringEncryptor jasyptStringEncryptor() throws Exception {
         String key = System.getenv("JASYPT_PASSWD");
         String algorithm = System.getenv("ALGORITHM");
+        System.getenv().forEach((s, s2) -> {System.out.println(s + ":" + s2);});
         if (key == null | algorithm == null) throw new Exception("key, algorithm VM Option에 없다");
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
