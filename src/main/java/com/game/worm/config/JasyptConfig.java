@@ -14,15 +14,9 @@ public class JasyptConfig {
 
     @Bean
     public StringEncryptor jasyptStringEncryptor() throws Exception {
-        String key = "1234";
-        String algorithm = "PBEWithMD5AndDES";
-        /*
-        String key = System.getProperty("jasypt.encryptor.password");
-        String algorithm = System.getProperty("jasypt.encryptor.algorithm");
-        if (key == null | algorithm == null) {
-            throw new Exception("key, algorithm VM Option에 없다");
-        }
-         */
+        String key = System.getenv("JASYPT_PASSWD");
+        String algorithm = System.getenv("ALGORITHM");
+        if (key == null | algorithm == null) throw new Exception("key, algorithm VM Option에 없다");
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         config.setPassword(key);
