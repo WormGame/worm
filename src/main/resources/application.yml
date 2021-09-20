@@ -3,9 +3,9 @@ spring:
     include:
       - application-stomp.yml
   datasource:
-    url: ENC(DJ5nCdC4anos5LC0QwbzHs6fTWZgITh9FizxMvb4nvKRCD0RaRCBRh84lumw0GgGIYuZ1p0o0gYsrzMdWMXmwYWoEB92I9/OjOZN5XKUYtYpVhXTZ0uJCxYxYq9bfM11)
-    username: ENC(0Ev7369tmM7eVMWpDe9waw==)
-    password: ENC(xrVfu7ieAx/1bR3pXqshew==)
+    url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x)
+    username: ENC(5/AhqAagHOPYLAK/ZmVpWQ==)
+    password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   thymeleaf:
