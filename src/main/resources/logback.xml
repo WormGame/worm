@@ -16,7 +16,7 @@
             <!--일 단위로 로그 남김-->
             <fileNamePattern>${LOG_ROLLING_DIR}/%d{yyyy-MM-dd}</fileNamePattern>
             <!--5일 지난 로그는 자동 지우기-->
-            <maxHistory>5</maxHistory>
+            <maxHistory>1</maxHistory>
         </rollingPolicy>
 
         <encoder>

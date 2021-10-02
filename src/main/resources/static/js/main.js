@@ -40,6 +40,13 @@ function showGreeting(message) {
 }
 
 $(function () {
+  new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  }
+})
+
   $("form").on('submit', function (e) {
     e.preventDefault();
   });

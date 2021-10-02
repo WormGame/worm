@@ -2,11 +2,7 @@ spring:
   profiles:
     include:
       - application-stomp.yml
-  datasource:
-    url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x)
-    username: ENC(5/AhqAagHOPYLAK/ZmVpWQ==)
-    password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  active: dev
 
   thymeleaf:
     prefix: classpath:templates/
@@ -24,3 +20,28 @@ spring:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+
+---
+
+Spring:
+  profiles: dev
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+---
+
+spring:
+  profiles: live
+  datasource:
+    url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x)
+    username: ENC(5/AhqAagHOPYLAK/ZmVpWQ==)
+    password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
+    driver-class-name: com.mysql.cj.jdbc.Driver
