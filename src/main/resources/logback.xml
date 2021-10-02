@@ -13,7 +13,9 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_STORE_DIR}/${LOG_NAME}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--일 단위로 로그 남김-->
             <fileNamePattern>${LOG_ROLLING_DIR}/%d{yyyy-MM-dd}</fileNamePattern>
+            <!--5일 지난 로그는 자동 지우기-->
             <maxHistory>5</maxHistory>
         </rollingPolicy>
 
@@ -21,16 +23,9 @@
             <Pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger{36}] - %msg%n</Pattern>
         </encoder>
     </appender>
-<!--
-    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>127.0.0.1:5000</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
-    </appender>
--->
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <!--<appender-ref ref="stash"/>-->
     </root>
 </configuration>
