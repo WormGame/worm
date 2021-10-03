@@ -25,12 +25,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
+	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.5.2'
 
 
 	//webjar 형식으로 빌드할 떄 프론트에 필요한 lib 추가
 	compileOnly 'org.webjars:sockjs-client:1.5.1'
 	compileOnly 'org.webjars:jquery:3.6.0'
 	compileOnly 'org.webjars:stomp-websocket:2.3.4'
+	implementation 'org.webjars:vue:2.6.14'
 
 	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.200'
 	compileOnly 'org.projectlombok:lombok'
