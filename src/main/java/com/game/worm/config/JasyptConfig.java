@@ -13,7 +13,6 @@ public class JasyptConfig {
     @Bean
     public StringEncryptor jasyptStringEncryptor() throws Exception {
         String key = System.getenv("JASYPT_PASSWD");
-        System.out.println(key);
         String algorithm = "PBEWithMD5AndDES";
 
         if (key == null) throw new Exception("key가 환경변수에 없다");

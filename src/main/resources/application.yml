@@ -39,6 +39,8 @@ Spring:
   devtools:
     livereload:
       enabled: true
+  freemaker:
+    cache: false
 ---
 
 spring:
