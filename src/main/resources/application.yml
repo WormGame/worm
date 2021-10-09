@@ -2,7 +2,8 @@ spring:
   profiles:
     include:
       - application-stomp.yml
-  active: dev
+    active: dev
+
 
   thymeleaf:
     prefix: classpath:templates/
@@ -24,8 +25,6 @@ jasypt:
 ---
 
 Spring:
-  profiles: dev
-
   h2:
     console:
       enabled: true
@@ -41,12 +40,17 @@ Spring:
       enabled: true
   freemaker:
     cache: false
+  config:
+    activate:
+      on-profile: dev
 ---
 
 spring:
-  profiles: live
   datasource:
     url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x)
     username: ENC(5/AhqAagHOPYLAK/ZmVpWQ==)
     password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
     driver-class-name: com.mysql.cj.jdbc.Driver
+  config:
+    activate:
+      on-profile: live
