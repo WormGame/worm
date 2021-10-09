@@ -36,6 +36,9 @@ Spring:
     username: sa
     password:
 
+  devtools:
+    livereload:
+      enabled: true
 ---
 
 spring:

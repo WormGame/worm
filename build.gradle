@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
 	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.5.2'
+	implementation 'org.springframework.boot:spring-boot-devtools:2.5.5'
 
 
 	//webjar 형식으로 빌드할 떄 프론트에 필요한 lib 추가
