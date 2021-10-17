@@ -1,17 +1,26 @@
 package com.game.worm.config;
 
 import com.game.worm.service.UserService;
+import com.game.worm.utils.eUrls;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private UserService userService;
+    private final UserService userService;
+
+    public WebSecurityConfig(@Qualifier("UserService") UserService userService) {
+        this.userService = userService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -20,7 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // 인증을 무시하기 위한 설정
         web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**");
     }
 
@@ -29,22 +37,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and()
-                .formLogin()     // 로그인 설정
-//                .loginPage("/member/login")      // 커스텀 login 페이지를 사용
-                .defaultSuccessUrl("/")      // 로그인 성공 시 이동할 페이지
+                .formLogin()
+//                .loginPage("/member/login")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher(eUrls.logout.toString()))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)    // 세션 초기화
                 .and()
                 .exceptionHandling();
+//        security exception만 처리하는 로직 보고 추가하기
+         /*.authenticationEntryPoint( new AuthenticationEntryPoint() {
+
+            @Override
+            public void commence(HttpServletRequest request, HttpServletResponse response,
+                                 AuthenticationException authException) throws IOException, ServletException {
+                response.sendRedirect("/login");
+            }
+        })
+                .accessDeniedHandler( new AccessDeniedHandler() {
+
+                    @Override
+                    public void handle(HttpServletRequest request, HttpServletResponse response,
+                                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
+                        response.sendRedirect("/denied");
+                    }*/
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 로그인 처리를 하기 위한 AuthenticationManagerBuilder를 설정
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 }
