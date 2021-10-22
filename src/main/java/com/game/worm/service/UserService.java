@@ -15,12 +15,18 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepo;
 
-    /*public UserService(@Qualifier("UserRepository") UserRepository userRepo) {
-        this.userRepo = userRepo;
-    }*/
-
-    private UserDetails login(@NonNull String userId){
+    private boolean checkParam(UserDAO userDAO){
+        if(userDAO == null){
+            return false;
+        }
+        return true;
+    }
+    private UserDetails login(@NonNull String userId) throws UsernameNotFoundException{
         UserDAO userDAO = userRepo.getByUserId(userId);
+        if(!checkParam(userDAO)){
+            throw new UsernameNotFoundException(userId);
+        }
+
         return new UserDetailsImpl(userDAO.getUserNo(), userDAO.getUserId(), userDAO.getUserPasswd());
     }
 

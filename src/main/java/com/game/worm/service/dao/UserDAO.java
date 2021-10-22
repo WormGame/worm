@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "USER")
 @Getter
 public class UserDAO {
     @Id

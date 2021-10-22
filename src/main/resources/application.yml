@@ -3,54 +3,29 @@ spring:
     include:
       - application-stomp.yml
     active: dev
-
-
   thymeleaf:
     prefix: classpath:templates/
+    check-template-location: true
     suffix: .html
-    cash: false
-
-    jpa:
-      hibernate:
-        ddl-auto: none
-      properties:
-        hibernate:
-          format_sql: true
-          default_batch_fetch_size: 100
-          use_sql_comments: true
-jasypt:
-  encryptor:
-    bean: jasyptStringEncryptor
-
----
-
-Spring:
-  h2:
-    console:
-      enabled: true
-
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-
-  devtools:
-    livereload:
-      enabled: true
-  freemaker:
+    mode: HTML5
     cache: false
-  config:
-    activate:
-      on-profile: dev
----
+    order: 0
 
-spring:
   datasource:
-    url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x)
+    #url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x) 외부 아이피
+    url: jdbc:mysql://localhost:3306/worm?serverTimezone=Asia/Seoul
     username: ENC(5/AhqAagHOPYLAK/ZmVpWQ==)
     password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
     driver-class-name: com.mysql.cj.jdbc.Driver
-  config:
-    activate:
-      on-profile: live
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+        use_sql_comments: true
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
