@@ -18,6 +18,9 @@ spring:
     password: ENC(7tcKhS5JXkdK1pfbDxbgHA==)
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         ddl-auto: none

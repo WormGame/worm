@@ -5,21 +5,31 @@ import com.game.worm.service.repository.UserRepository;
 import com.game.worm.service.security.UserDetailsImpl;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service("UserService")
-@RequiredArgsConstructor
+import javax.transaction.Transactional;
+
+
+@Service
 public class UserService implements UserDetailsService {
-    private final UserRepository userRepo;
+    @Autowired
+    private UserRepository userRepo;
 
     private boolean checkParam(UserDAO userDAO){
         if(userDAO == null){
             return false;
         }
         return true;
+    }
+
+    public void signup(@NonNull String userId, @NonNull String userPasswd){
+        userRepo.save(new UserDAO(userId, userPasswd));
     }
     private UserDetails login(@NonNull String userId) throws UsernameNotFoundException{
         UserDAO userDAO = userRepo.getByUserId(userId);

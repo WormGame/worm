@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-
+@Repository(value = "UserRepository")
 public interface UserRepository extends JpaRepository<UserDAO, Long> {
-    UserDAO getByUserId(@NonNull String userId);
+    UserDAO getByUserId(String userId);
 }
