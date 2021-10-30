@@ -32,3 +32,7 @@ spring:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+server:
+  servlet:
+    session:
+      timeout: -1

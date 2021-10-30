@@ -1,11 +1,13 @@
 package com.game.worm.service.dao;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "USER")
+@Entity(name = "USER_INFO")
 @Getter
+@NoArgsConstructor
 public class UserDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

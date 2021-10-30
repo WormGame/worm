@@ -1,40 +1,31 @@
 package com.game.worm.config;
 
 import com.game.worm.service.UserService;
-import com.game.worm.utils.eUrls;
+import com.game.worm.utils.Urls;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-class a {
-    int a;
-
-}
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final int NONEXPIRE = -1;
     @Autowired
     private UserService userService;
-
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**");
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+                http.csrf().disable().authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
@@ -43,11 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher(eUrls.logout.toString()))
+                .logoutRequestMatcher(new AntPathRequestMatcher(Urls.logout))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)    // 세션 초기화
-                .and()
-                .exceptionHandling();
+                .and().exceptionHandling();
 //        security exception만 처리하는 로직 보고 추가하기
          /*.authenticationEntryPoint( new AuthenticationEntryPoint() {
 
@@ -68,6 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(getPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }
