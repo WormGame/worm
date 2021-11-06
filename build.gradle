@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.0'
+	id 'org.springframework.boot' version '2.5.6'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -23,10 +23,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-devtools:2.5.5'
+	implementation 'org.springframework.boot:spring-boot-devtools'
 
 
 	//webjar 형식으로 빌드할 떄 프론트에 필요한 lib 추가

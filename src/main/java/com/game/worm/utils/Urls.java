@@ -9,5 +9,6 @@ public class Urls {
     public static final String signup = "signup";
     public static final String index = "index";
     public static final String index_blank = "";
+    public static final String KEY_DRAW = "draw";
 
 }

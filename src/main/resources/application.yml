@@ -3,13 +3,6 @@ spring:
     include:
       - application-stomp.yml
     active: dev
-  thymeleaf:
-    prefix: classpath:templates/
-    check-template-location: true
-    suffix: .html
-    mode: HTML5
-    cache: false
-    order: 0
 
   datasource:
     #url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x) 외부 아이피
@@ -36,3 +29,5 @@ server:
   servlet:
     session:
       timeout: -1
+
+  port: 80

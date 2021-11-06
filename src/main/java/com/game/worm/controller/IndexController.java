@@ -17,8 +17,6 @@ public class IndexController {
 
     @RequestMapping({Urls.index_blank,Urls.index})
     public String index(HttpServletRequest req) {
-        HttpSession d = req.getSession();
-        log.info(String.valueOf(d.getMaxInactiveInterval()));
         return Urls.index;
     }
 
@@ -26,4 +24,10 @@ public class IndexController {
     public String signup(){
         return Urls.signup;
     }
+
+    @RequestMapping(Urls.KEY_DRAW)
+    public String draw(){
+        return Urls.KEY_DRAW;
+    }
+
 }
