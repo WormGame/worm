@@ -3,7 +3,11 @@ spring:
     include:
       - application-stomp.yml
     active: dev
-
+  thymeleaf:
+    cache: false
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
   datasource:
     #url: ENC(AmjDJqwXWxXbNLxT2tqrt7evRCK8NdAJ/KVEtB7usTsoUzlncqDsMcIiJbPEo2eR7470koIhMEpI1Ut2Ywum/kwxsbK3eM7x) 외부 아이피
     url: jdbc:mysql://localhost:3306/worm?serverTimezone=Asia/Seoul
