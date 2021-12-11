@@ -20,6 +20,11 @@ public class IndexController {
         return Urls.index;
     }
 
+    @RequestMapping("unity")
+    public String unity(){
+        return "unity";
+    }
+
     @RequestMapping(Urls.signup)
     public String signup(){
         return Urls.signup;
