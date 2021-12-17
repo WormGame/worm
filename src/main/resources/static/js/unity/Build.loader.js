@@ -5,7 +5,7 @@ function createUnityInstance(canvas, config, onProgress) {
     // Only ever show one error at most - other banner messages after that should get ignored
     // to avoid noise.
     if (!showBanner.aborted && config.showBanner) {
-      if (type == 'error') showBanner.aborted = true;
+      if (type === 'error') showBanner.aborted = true;
       return config.showBanner(msg, type);
     }
 
@@ -70,7 +70,7 @@ function createUnityInstance(canvas, config, onProgress) {
 
       if (typeof message === 'string' && message.indexOf('wasm streaming compile failed') != -1) {
         if (message.toLowerCase().indexOf('mime') != -1) {
-          showBanner('HTTP Response Header "Content-Type" configured incorrectly on the server for file ' + Module.codeUrl + ' , should be "application/wasm". Startup time performance will suffer.', 'warning');
+          // showBanner('HTTP Response Header "Content-Type" configured incorrectly on the server for file ' + Module.codeUrl + ' , should be "application/wasm". Startup time performance will suffer.', 'warning');
         } else {
           showBanner('WebAssembly streaming compilation failed! This can happen for example if "Content-Encoding" HTTP header is incorrectly enabled on the server for file ' + Module.codeUrl + ', but the file is not pre-compressed on disk (or vice versa). Check the Network tab in browser Devtools to debug server header configuration.', 'warning');
         }
