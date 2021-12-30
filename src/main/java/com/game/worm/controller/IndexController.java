@@ -22,9 +22,15 @@ public class IndexController {
         return "unity";
     }
 
+    @RequestMapping(value = Urls.login)
+    public String unidty(HttpServletResponse response){
+        return "login";
+    }
+
+
     @RequestMapping(Urls.signup)
     public String signup(){
-        return Urls.signup;
+        return "signup";
     }
 
     @RequestMapping(Urls.KEY_DRAW)

@@ -14,18 +14,18 @@
 
 
     <div class="container">
-        <center>
+        <div style="text-align: center;">
             <div class="middle">
                 <div id="login">
 
-                    <form method="post" action="/user/signup">
+                    <form action="/loginProcess" method="post">
 
                         <fieldset class="clearfix">
 
-                            <p><span class="fa fa-user"></span><input type="text" id="userId" Placeholder="Username"
-                                                                      required></p>
+                            <p><span class="fa fa-user"></span><input type="text" id="username" name="username"
+                                                                      Placeholder="Username" required></p>
                             <!-- JS because of IE support; better: placeholder="Username" -->
-                            <p><span class="fa fa-lock"></span><input type="password" id="userPasswd"
+                            <p><span class="fa fa-lock"></span><input type="password" id="password" name="password"
                                                                       Placeholder="Password" required></p>
                             <!-- JS because of IE support; better: placeholder="Password" -->
 
@@ -50,7 +50,7 @@
                 </div>
 
             </div>
-        </center>
+        </div>
     </div>
 
 </div>

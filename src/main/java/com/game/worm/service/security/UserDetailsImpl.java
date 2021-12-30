@@ -17,6 +17,11 @@ public class UserDetailsImpl implements UserDetails {
         return userNo;
     }
 
+    public UserDetailsImpl(String userId, String userPasswd) {
+        this.userId = userId;
+        this.userPasswd = userPasswd;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
