@@ -1,21 +1,30 @@
 package com.game.worm.config;
 
+import com.game.worm.filter.security.UsernamePasswordAuthenticationFilterEx;
 import com.game.worm.service.UserDetailsServiceImpl;
+import com.game.worm.service.security.UserProviderManagerEx;
 import com.game.worm.service.security.UserAuthenticationProviderImpl;
+import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.Urls;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final int NONEXPIRE = -1;
-    private final UserAuthenticationProviderImpl userAuthenticationProviderImpl;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
+    private final BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
 
     @Override
     public void configure(WebSecurity web) {
@@ -23,22 +32,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(ignoreMatchers);
     }
 
+    @Bean
+    UsernamePasswordAuthenticationFilterEx getUsernamePasswordAuthenticationFilterEx(){
+        List<AuthenticationProvider> authenticationProviders = new ArrayList<>();
+        authenticationProviders.add(new UserAuthenticationProviderImpl(userDetailsServiceImpl, bCryptPasswordEncoderEx));
+        UserProviderManagerEx userAuthenticationManagerEx = new UserProviderManagerEx(authenticationProviders);
+        return new UsernamePasswordAuthenticationFilterEx(userAuthenticationManagerEx);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http.csrf().disable().authorizeRequests()
+        final String[] matchers = {Urls.signup, Urls.login};
+        http.httpBasic().and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(matchers).anonymous()
                 .antMatchers("/**").permitAll()
-                .and()
-                .formLogin()
-                .loginPage(Urls.login)
-                .defaultSuccessUrl(Urls.index)
-                .permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher(Urls.logout))
                 .logoutSuccessUrl(Urls.index)
                 .invalidateHttpSession(true)    // 세션 초기화
-                .and().exceptionHandling();
+                .and().exceptionHandling()
+        .and().addFilterAt(getUsernamePasswordAuthenticationFilterEx(), UsernamePasswordAuthenticationFilter.class);
 //        security exception만 처리하는 로직 보고 추가하기
          /*.authenticationEntryPoint( new AuthenticationEntryPoint() {
 
@@ -55,10 +71,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
                         response.sendRedirect("/denied");
                     }*/
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(userAuthenticationProviderImpl);
     }
 }

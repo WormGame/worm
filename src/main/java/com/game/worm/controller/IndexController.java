@@ -14,28 +14,12 @@ public class IndexController {
 
     @RequestMapping({Urls.index_blank,Urls.index})
     public String index(HttpServletRequest req) {
-        return Urls.index;
+        return "index";
     }
 
-    @RequestMapping(value = "unity")
+    @RequestMapping(value = Urls.GAME)
     public String unity(HttpServletResponse response){
         return "unity";
-    }
-
-    @RequestMapping(value = Urls.login)
-    public String unidty(HttpServletResponse response){
-        return "login";
-    }
-
-
-    @RequestMapping(Urls.signup)
-    public String signup(){
-        return "signup";
-    }
-
-    @RequestMapping(Urls.KEY_DRAW)
-    public String draw(){
-        return Urls.KEY_DRAW;
     }
 
 }

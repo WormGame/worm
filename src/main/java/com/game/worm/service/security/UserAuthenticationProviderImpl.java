@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @RequiredArgsConstructor
 public class UserAuthenticationProviderImpl implements AuthenticationProvider {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
