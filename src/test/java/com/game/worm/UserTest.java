@@ -5,6 +5,7 @@ import com.game.worm.service.repository.UserRepository;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.FrontParamName;
 import com.game.worm.utils.Urls;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,21 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.net.http.HttpHeaders;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserTest {
+	final String password = "1234";
+	final String userId = "mose111";
+	@Autowired
+	BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
@@ -36,9 +44,10 @@ class UserTest {
 		userInfo.add(FrontParamName.USER_ID, userId);
 		userInfo.add(FrontParamName.USER_PASSWD, password);
 
-		mockMvc.perform(get(Urls.login)
+		mockMvc.perform(post(Urls.login)
 						.params(userInfo))
-				.andExpect(status().isOk())
+				.andExpect(header().string("Location", "/"))
+				.andExpect(status().is3xxRedirection())
 				.andDo(print());
 	}
 
@@ -56,13 +65,6 @@ class UserTest {
 				.andDo(print());
 	}
 
-	@Autowired
-	BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
-
-	final String password = "1234";
-	final String userId = "mose111";
-/*
-
 	@Transactional
 	@BeforeEach
 	void init() {
@@ -77,6 +79,5 @@ class UserTest {
 			e.printStackTrace();
 		}
 	}
-*/
 
 }
