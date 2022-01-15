@@ -19,7 +19,7 @@ repositories {
 }
 //
 dependencies {
-    implementation 'mysql:mysql-connector-java:8.0.25'
+//    implementation 'mysql:mysql-connector-java:8.0.25'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -36,8 +36,8 @@ dependencies {
 	implementation 'org.webjars:stomp-websocket:2.3.4'
 	implementation 'org.webjars:vue:2.6.14'
 
-	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.200'
 	implementation 'org.projectlombok:lombok'
+	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.4.200'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
