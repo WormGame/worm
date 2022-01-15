@@ -1,6 +1,6 @@
 package com.game.worm.service.security;
 
-import com.game.worm.service.UserDetailsServiceImpl;
+import com.game.worm.service.user.UserDetailsServiceImpl;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.Messages;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
 
 @RequiredArgsConstructor

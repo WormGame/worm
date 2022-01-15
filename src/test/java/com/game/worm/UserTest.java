@@ -1,23 +1,19 @@
 package com.game.worm;
 
-import com.game.worm.service.dao.UserDAO;
+import com.game.worm.service.user.dao.UserDAO;
 import com.game.worm.service.repository.UserRepository;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.FrontParamName;
 import com.game.worm.utils.Urls;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
-import java.net.http.HttpHeaders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

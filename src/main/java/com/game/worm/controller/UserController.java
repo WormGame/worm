@@ -1,16 +1,16 @@
 package com.game.worm.controller;
 
-import com.game.worm.service.UserDetailsServiceImpl;
-import com.game.worm.service.dto.UserDTO;
+import com.game.worm.service.user.UserDetailsServiceImpl;
+import com.game.worm.service.user.vo.UserSignupVO;
 import com.game.worm.utils.Messages;
 import com.game.worm.utils.Urls;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -20,9 +20,9 @@ public class UserController {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @PostMapping(Urls.signup)
-    public String signup(@ModelAttribute UserDTO userDTO){
+    public String signup(@Valid @RequestBody UserSignupVO userSignupVO){
         try{
-            userDetailsServiceImpl.signup(userDTO.getUserId(), userDTO.getUserPasswd());
+            userDetailsServiceImpl.signup(userSignupVO);
         } catch (Exception e){
             log.error(Messages.SIGNUP_FAIL, e);
             return Messages.SIGNUP_FAIL;

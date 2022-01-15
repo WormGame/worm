@@ -1,4 +1,4 @@
-package com.game.worm.service.dao;
+package com.game.worm.service.user.dao;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

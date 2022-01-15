@@ -1,28 +1,31 @@
-package com.game.worm.service;
+package com.game.worm.service.user;
 
-import com.game.worm.service.dao.UserDAO;
+import com.game.worm.service.user.dao.UserDAO;
 import com.game.worm.service.repository.UserRepository;
 import com.game.worm.service.security.UserDetailsImpl;
+import com.game.worm.service.user.vo.UserSignupVO;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepo;
     private final BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
 
-    public void signup(@NonNull final String userId, @NonNull final String userPasswd){
-        String encodePasswd = bCryptPasswordEncoderEx.encode(userPasswd);
-        userRepo.save(new UserDAO(userId, encodePasswd));
+    public void signup(@Valid final UserSignupVO userSignupVO){
+        String encodePasswd = bCryptPasswordEncoderEx.encode(userSignupVO.getUserId());
+        userRepo.save(new UserDAO(userSignupVO.getUserId(), encodePasswd));
     }
 
     private UserDetails login(@NonNull final String userId) throws UsernameNotFoundException{
