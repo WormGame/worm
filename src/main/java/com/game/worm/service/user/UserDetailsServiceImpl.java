@@ -25,12 +25,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepo;
     private final BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
 
-    public void signup(@NotNull(message = Messages.BAD_PARAM) @Valid final UserSignupVO userSignupVO){
-        String encodePasswd = bCryptPasswordEncoderEx.encode(userSignupVO.getUserId());
-        userRepo.save(new UserDAO(userSignupVO.getUserId(), encodePasswd));
+    public void signup(@NotNull @Valid final UserSignupVO userSignupVO){
+        final String encodePasswd = bCryptPasswordEncoderEx.encode(userSignupVO.getUserId());
+        final String userId = userSignupVO.getUserId();
+        userRepo.save(new UserDAO(userId, encodePasswd));
     }
 
-    private UserDetails login(@NonNull final String userId) throws UsernameNotFoundException{
+    private UserDetails login(@NotNull final String userId) throws UsernameNotFoundException{
         UserDAO userDAO = userRepo.getByUserId(userId);
         if(userDAO == null){
             throw new UsernameNotFoundException(userId);
@@ -41,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(@NonNull final String username) throws UsernameNotFoundException {
-        return login(username);
+    public UserDetails loadUserByUsername(@NotNull final String userId) throws UsernameNotFoundException {
+        return login(userId);
     }
 }

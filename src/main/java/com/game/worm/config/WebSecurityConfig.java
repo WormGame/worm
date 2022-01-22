@@ -1,9 +1,9 @@
 package com.game.worm.config;
 
 import com.game.worm.filter.security.UsernamePasswordAuthenticationFilterEx;
-import com.game.worm.service.user.UserDetailsServiceImpl;
-import com.game.worm.service.security.UserProviderManagerEx;
 import com.game.worm.service.security.UserAuthenticationProviderImpl;
+import com.game.worm.service.security.UserProviderManagerEx;
+import com.game.worm.service.user.UserDetailsServiceImpl;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.Urls;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 import java.util.ArrayList;
 import java.util.List;
