@@ -61,7 +61,7 @@ public class ErrorController {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ResponseFormat(
-                eErrorInfo.DEFALT.getMessage()
+                eErrorInfo.DEFAULT.getMessage()
                 , false
                 ,null));
     }

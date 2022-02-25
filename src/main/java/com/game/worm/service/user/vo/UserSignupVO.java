@@ -1,8 +1,8 @@
 package com.game.worm.service.user.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.game.worm.utils.FrontParamName;
-import com.game.worm.utils.Messages;
+import com.game.worm.etc.define.ParameterName;
+import com.game.worm.etc.define.Messages;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -14,10 +14,10 @@ import javax.validation.constraints.NotEmpty;
 @RequiredArgsConstructor
 @Valid
 public class UserSignupVO {
-    @JsonProperty(FrontParamName.USER_ID)
+    @JsonProperty(ParameterName.USER_ID)
     @NotEmpty(message = Messages.BAD_PARAM)
     private final String userId;
-    @JsonProperty(FrontParamName.USER_PASSWD)
+    @JsonProperty(ParameterName.USER_PASSWD)
     @NotEmpty(message = Messages.BAD_PARAM)
     private final String userPasswd;
 }

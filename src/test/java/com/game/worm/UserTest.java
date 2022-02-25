@@ -3,7 +3,7 @@ package com.game.worm;
 import com.game.worm.service.user.dao.UserDAO;
 import com.game.worm.service.repository.UserRepository;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
-import com.game.worm.utils.FrontParamName;
+import com.game.worm.etc.define.ParameterName;
 import com.game.worm.utils.Urls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,8 +37,8 @@ class UserTest {
 	void login() throws Exception {
 		MultiValueMap<String, String> userInfo = new LinkedMultiValueMap<>();
 
-		userInfo.add(FrontParamName.USER_ID, userId);
-		userInfo.add(FrontParamName.USER_PASSWD, password);
+		userInfo.add(ParameterName.USER_ID, userId);
+		userInfo.add(ParameterName.USER_PASSWD, password);
 
 		mockMvc.perform(post(Urls.login)
 						.params(userInfo))
@@ -52,8 +52,8 @@ class UserTest {
 	void signup() throws Exception {
 		MultiValueMap<String, String> userInfo = new LinkedMultiValueMap<>();
 
-		userInfo.add(FrontParamName.USER_ID, userId);
-		userInfo.add(FrontParamName.USER_PASSWD, password);
+		userInfo.add(ParameterName.USER_ID, userId);
+		userInfo.add(ParameterName.USER_PASSWD, password);
 
 		mockMvc.perform(post(Urls.signup)
 						.params(userInfo))

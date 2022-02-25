@@ -1,4 +1,4 @@
-package com.game.worm.communication;
+package com.game.worm.etc.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

@@ -1,7 +1,5 @@
 package com.game.worm.utils;
 
-import java.util.Arrays;
-
 public final class CommonUtils {
     public static String getStackTraceElements(Exception e){
         StackTraceElement[] stackElements;

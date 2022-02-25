@@ -2,7 +2,7 @@ package com.game.worm.service.security;
 
 import com.game.worm.service.user.UserDetailsServiceImpl;
 import com.game.worm.utils.BCryptPasswordEncoderEx;
-import com.game.worm.utils.Messages;
+import com.game.worm.etc.define.Messages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,7 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserAuthenticationProviderImpl implements AuthenticationProvider {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
     private final BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
-    boolean checkedParam(Authentication authentication){
+
+    private boolean checkedParam(Authentication authentication){
         if(!(authentication.getCredentials() instanceof String)){
             return false;
         }

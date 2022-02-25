@@ -1,7 +1,7 @@
 package com.game.worm.filter.security;
 
-import com.game.worm.utils.FrontParamName;
-import com.game.worm.utils.Messages;
+import com.game.worm.etc.define.ParameterName;
+import com.game.worm.etc.define.Messages;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,8 +29,8 @@ public class UsernamePasswordAuthenticationFilterEx extends UsernamePasswordAuth
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        final String userId = request.getParameter(FrontParamName.USER_ID);
-        final String userPasswd = request.getParameter(FrontParamName.USER_PASSWD);
+        final String userId = request.getParameter(ParameterName.USER_ID);
+        final String userPasswd = request.getParameter(ParameterName.USER_PASSWD);
         if(!checkObtainParma(userId, userPasswd)){
             throw new AssertionError(Messages.BAD_PARAM);
         }
