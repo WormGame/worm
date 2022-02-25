@@ -4,6 +4,7 @@ import com.game.worm.service.exception.ApiException;
 import com.game.worm.service.response.ResponseFormat;
 import com.game.worm.service.user.UserDetailsServiceImpl;
 import com.game.worm.service.user.vo.UserSignupVO;
+import com.game.worm.utils.CommonUtils;
 import com.game.worm.utils.Urls;
 import com.game.worm.utils.eErrorInfo;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class UserController {
         try {
             userDetailsServiceImpl.signup(userSignupVO);
         } catch (Exception e){
-            throw new ApiException(eErrorInfo.FAIL_SIGNUP, false);
+            throw new ApiException(e, eErrorInfo.FAIL_SIGNUP, false);
         }
         return null;
     }

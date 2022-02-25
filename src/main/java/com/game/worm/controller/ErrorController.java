@@ -45,7 +45,7 @@ public class ErrorController {
     @ExceptionHandler(ApiException.class)
     private ResponseEntity<ResponseFormat> apiError(ApiException e){
         log.error(e.getMessage());
-        log.error(CommonUtils.getStackTraceElements(e));
+        log.error(CommonUtils.getStackTraceElements(e.getException()));
         return ResponseEntity
                 .status(e.getHttpStatus())
                 .body(new ResponseFormat(

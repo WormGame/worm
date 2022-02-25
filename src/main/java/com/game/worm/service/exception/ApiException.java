@@ -13,20 +13,23 @@ public class ApiException extends RuntimeException{
     private final HttpStatus httpStatus;
     private final boolean success;
     private final JsonObject result;
+    private final Exception exception;
 
-    public ApiException(eErrorInfo e, boolean success) {
+    public ApiException(final Exception exception, final eErrorInfo e,final boolean success) {
+        this.exception = exception;
         this.httpStatus = e.getHttpStatus();
         this.message = e.getMessage();
         this.result = null;
         this.success = success;
     }
-
+/*
     public ApiException(final eErrorInfo e, final boolean success, final JsonObject result) {
+        this.exception = null;
         this.httpStatus = e.getHttpStatus();
         this.message = e.getMessage();
         this.result = result;
         this.success = success;
-    }
+    }*/
 
 
 }
