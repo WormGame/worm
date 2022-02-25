@@ -1,9 +1,9 @@
 package com.game.worm;
 
-import com.game.worm.service.user.dao.UserDAO;
-import com.game.worm.service.repository.UserRepository;
-import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.etc.define.ParameterName;
+import com.game.worm.service.repository.UserRepository;
+import com.game.worm.service.user.dao.UserDAO;
+import com.game.worm.utils.BCryptPasswordEncoderEx;
 import com.game.worm.utils.Urls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;

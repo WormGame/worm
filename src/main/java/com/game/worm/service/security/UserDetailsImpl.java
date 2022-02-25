@@ -1,7 +1,6 @@
 package com.game.worm.service.security;
 
 import lombok.AllArgsConstructor;
-import lombok.Generated;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

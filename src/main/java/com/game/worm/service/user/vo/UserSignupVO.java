@@ -1,8 +1,8 @@
 package com.game.worm.service.user.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.game.worm.etc.define.ParameterName;
 import com.game.worm.etc.define.Messages;
+import com.game.worm.etc.define.ParameterName;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
