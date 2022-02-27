@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
 
     public void signup(final UserSignupVO userSignupVO){
-        final String encodePasswd = bCryptPasswordEncoderEx.encode(userSignupVO.getUserId());
+        final String encodePasswd = bCryptPasswordEncoderEx.encode(userSignupVO.getUserPasswd());
         final String userId = userSignupVO.getUserId();
         UserDAO userDAO = new UserDAO(userId, encodePasswd);
         userRepo.save(userDAO);
