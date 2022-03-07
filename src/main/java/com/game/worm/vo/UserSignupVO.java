@@ -1,4 +1,4 @@
-package com.game.worm.service.user.vo;
+package com.game.worm.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.game.worm.etc.define.Messages;

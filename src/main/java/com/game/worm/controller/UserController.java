@@ -1,9 +1,9 @@
 package com.game.worm.controller;
 
-import com.game.worm.service.exception.ApiException;
-import com.game.worm.service.response.ResponseFormat;
+import com.game.worm.etc.define.ApiException;
+import com.game.worm.etc.define.ResponseFormat;
 import com.game.worm.service.user.UserDetailsServiceImpl;
-import com.game.worm.service.user.vo.UserSignupVO;
+import com.game.worm.vo.UserSignupVO;
 import com.game.worm.utils.Urls;
 import com.game.worm.utils.eErrorInfo;
 import lombok.RequiredArgsConstructor;

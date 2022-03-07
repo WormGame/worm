@@ -1,4 +1,4 @@
-package com.game.worm.service.user.dto;
+package com.game.worm.dto;
 
 import lombok.Data;
 

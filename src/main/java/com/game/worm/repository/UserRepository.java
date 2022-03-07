@@ -1,6 +1,6 @@
-package com.game.worm.service.repository;
+package com.game.worm.repository;
 
-import com.game.worm.service.user.dao.UserDAO;
+import com.game.worm.dao.UserDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.game.worm.service.response;
+package com.game.worm.etc.define;
 
-import com.game.worm.service.exception.ApiException;
+import com.game.worm.etc.define.ApiException;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

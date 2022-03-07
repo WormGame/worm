@@ -1,7 +1,7 @@
 package com.game.worm.controller;
 
-import com.game.worm.service.exception.ApiException;
-import com.game.worm.service.response.ResponseFormat;
+import com.game.worm.etc.define.ApiException;
+import com.game.worm.etc.define.ResponseFormat;
 import com.game.worm.utils.CommonUtils;
 import com.game.worm.utils.eErrorInfo;
 import lombok.extern.slf4j.Slf4j;

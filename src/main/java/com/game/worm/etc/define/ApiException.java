@@ -1,4 +1,4 @@
-package com.game.worm.service.exception;
+package com.game.worm.etc.define;
 
 import com.game.worm.utils.eErrorInfo;
 import com.google.gson.JsonObject;

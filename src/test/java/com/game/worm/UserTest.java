@@ -1,15 +1,15 @@
 package com.game.worm;
 
 import com.game.worm.etc.define.ParameterName;
-import com.game.worm.service.repository.UserRepository;
-import com.game.worm.service.user.dao.UserDAO;
-import com.game.worm.utils.BCryptPasswordEncoderEx;
+import com.game.worm.repository.UserRepository;
+import com.game.worm.dao.UserDAO;
 import com.game.worm.utils.Urls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
@@ -25,8 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserTest {
 	final String password = "1234";
 	final String userId = "mose111";
-	@Autowired
-	BCryptPasswordEncoderEx bCryptPasswordEncoderEx;
+
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
@@ -63,7 +62,8 @@ class UserTest {
 	@Transactional
 	@BeforeEach
 	void init() {
-		final String encodePasswd = bCryptPasswordEncoderEx.encode(password);
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		final String encodePasswd = bCryptPasswordEncoder.encode(password);
 		final UserDAO user = new UserDAO(userId, encodePasswd);
 
 		try {
