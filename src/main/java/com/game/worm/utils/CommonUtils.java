@@ -1,7 +1,7 @@
 package com.game.worm.utils;
 
 public final class CommonUtils {
-    public static String getStackTraceElements(Exception e){
+    public static String getStackTraceElements(Throwable e){
         StackTraceElement[] stackElements;
         StringBuilder result = new StringBuilder();
         if(e.getCause() == null){

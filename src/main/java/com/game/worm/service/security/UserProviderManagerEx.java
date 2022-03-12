@@ -17,16 +17,16 @@ public class UserProviderManagerEx extends ProviderManager {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         List<AuthenticationProvider> authenticationProviders =  super.getProviders();
-        boolean bOncecheck = false;
+        boolean bProviderFindCheck = false;
         for (AuthenticationProvider provider : authenticationProviders) {
             if(!provider.supports(authentication.getClass())){
                 continue;
             }
-            bOncecheck = true;
+            bProviderFindCheck = true;
             authentication = provider.authenticate(authentication);
             break;
         }
-        if(!bOncecheck){
+        if(!bProviderFindCheck){
             log.error("해당하는 AuthenticationProvider가 없습니다.");
             log.debug(authentication.getClass().getName());
         }

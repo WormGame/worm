@@ -1,8 +1,8 @@
 package com.game.worm;
 
+import com.game.worm.dao.UserDAO;
 import com.game.worm.etc.define.ParameterName;
 import com.game.worm.repository.UserRepository;
-import com.game.worm.dao.UserDAO;
 import com.game.worm.utils.Urls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
