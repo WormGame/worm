@@ -2,6 +2,7 @@ package com.game.worm.etc.config;
 
 import com.game.worm.filter.security.UsernamePasswordAuthenticationFilterEx;
 import com.game.worm.service.security.AuthenticationFailureHandlerImpl;
+import com.game.worm.service.security.LogOutHandlerImpl;
 import com.game.worm.service.security.UserAuthenticationProviderImpl;
 import com.game.worm.service.security.UserProviderManagerEx;
 import com.game.worm.service.user.UserDetailsServiceImpl;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -42,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         final String[] matchers = {Urls.signup, Urls.login};
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.httpBasic().disable()
                 .csrf().disable()
                 .authorizeRequests()
@@ -49,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher(Urls.logout))
-                .invalidateHttpSession(true)    // 세션 초기화
+                .addLogoutHandler(new LogOutHandlerImpl())
                 .and().formLogin().disable()
         .addFilterAfter(getUsernamePasswordAuthenticationFilterEx(), UsernamePasswordAuthenticationFilter.class);
     }
