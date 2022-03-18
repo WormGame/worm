@@ -1,6 +1,5 @@
 package com.game.worm.etc.define;
 
-import com.game.worm.utils.eErrorInfo;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 import lombok.ToString;
