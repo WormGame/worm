@@ -9,11 +9,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -57,8 +61,10 @@ public class UsernamePasswordAuthenticationFilterEx extends UsernamePasswordAuth
         } catch (Exception e){
             throw new AuthenticationServiceException("Login 요청 Json 값 꺼내기 실패.", e);
         }
-        UsernamePasswordAuthenticationToken authReqToken = new UsernamePasswordAuthenticationToken(userId, userPasswd);
-        authReqToken.setAuthenticated(true);
+//        임시로 권한 파라미터를 채우기 위해 roles 추가함 따로 그룹 권한 부여하자
+        List<GrantedAuthority> roles = new ArrayList<>();
+        roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+        UsernamePasswordAuthenticationToken authReqToken = new UsernamePasswordAuthenticationToken(userId, userPasswd, roles);
         return getAuthenticationManager().authenticate(authReqToken);
     }
 }
