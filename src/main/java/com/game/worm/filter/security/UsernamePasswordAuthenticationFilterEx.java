@@ -58,6 +58,7 @@ public class UsernamePasswordAuthenticationFilterEx extends UsernamePasswordAuth
             throw new AuthenticationServiceException("Login 요청 Json 값 꺼내기 실패.", e);
         }
         UsernamePasswordAuthenticationToken authReqToken = new UsernamePasswordAuthenticationToken(userId, userPasswd);
+        authReqToken.setAuthenticated(true);
         return getAuthenticationManager().authenticate(authReqToken);
     }
 }

@@ -11,15 +11,13 @@ import javax.servlet.http.HttpSessionListener;
 @Slf4j
 public class HttpSessionListenerImpl implements HttpSessionListener {
     private static final int LOGIN_EXPIRE = -1;
-    private static final int NORMAL_EXPIRE = 60 * 1;
+    private static final int NORMAL_EXPIRE = 60 * 15;
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()){
-            log.info("Login User");
             se.getSession().setMaxInactiveInterval(LOGIN_EXPIRE);
         } else{
-            log.info("Normal User");
             se.getSession().setMaxInactiveInterval(NORMAL_EXPIRE);
         }
         HttpSessionListener.super.sessionCreated(se);
