@@ -1,4 +1,10 @@
 spring:
+  servlet:
+    multipart:
+      file-size-threshold: 1024MB
+      location: C:/Temp
+      max-file-size: 1024MB
+      max-request-size: 1024MB
   profiles:
     include:
       - application-stomp.yml
