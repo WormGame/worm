@@ -1,4 +1,4 @@
-package com.game.worm.utils;
+package com.game.worm.etc.define;
 /*
 *   모든 Url 맵핑
  */

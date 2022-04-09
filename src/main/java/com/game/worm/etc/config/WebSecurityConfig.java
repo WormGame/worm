@@ -1,12 +1,12 @@
 package com.game.worm.etc.config;
 
+import com.game.worm.etc.define.Urls;
 import com.game.worm.filter.security.UsernamePasswordAuthenticationFilterEx;
 import com.game.worm.service.security.AuthenticationFailureHandlerImpl;
 import com.game.worm.service.security.LogOutHandlerImpl;
 import com.game.worm.service.security.UserAuthenticationProviderImpl;
 import com.game.worm.service.security.UserProviderManagerEx;
 import com.game.worm.service.user.UserDetailsServiceImpl;
-import com.game.worm.utils.Urls;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
