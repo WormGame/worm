@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @ServletComponentScan
 @SpringBootApplication
-@EnableAsync
 public class WormApplication {
 
 	public static void main(String[] args) {
